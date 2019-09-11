@@ -1,5 +1,4 @@
-
-var fs = require('fs')
+var fs = require('fs');
 var sampleConfig = `
 module.exports = {
   saveLocation: './dataFiles',
@@ -9,15 +8,15 @@ module.exports = {
   secret: process.env.CD_API_SECRET,
   maxConnections: 200, // The maximum number of files allowed to be downloading simultaneously
 }
-`
+`;
 class ConfigTask {
   constructor(opts, config, logger) {
-    this.logger = logger
+    this.logger = logger;
   }
   run(cb) {
-    this.logger.info(sampleConfig)
-    this.logger.info('was written to config.js')
-    fs.writeFile('config.js.sample', sampleConfig, cb)
+    this.logger.info(sampleConfig);
+    this.logger.info('was written to config.js');
+    fs.writeFile('config.js.sample', sampleConfig, cb);
   }
   static validate(config) {
     var fields = [
@@ -25,13 +24,13 @@ class ConfigTask {
       'apiUrl',
       'key',
       'secret'
-    ]
-    var missing = []
+    ];
+    var missing = [];
     for (var field of fields) {
-      if (!config[field]) missing.push(field)
+      if (!config[field]) missing.push(field);
     }
-    if (missing.length) return `missing ${missing.join(', ')} fields in config`
-    return null
+    if (missing.length) return `missing ${missing.join(', ')} fields in config`;
+    return null;
   }
 }
-module.exports = ConfigTask
+module.exports = ConfigTask;

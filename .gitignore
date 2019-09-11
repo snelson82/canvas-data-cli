@@ -5,3 +5,7 @@ downloads/
 state.json
 report/
 .nyc_output/
+**/my_scripts
+**/dataFiles
+**/unpackedFiles
+.DS_Store
