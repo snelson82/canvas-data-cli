@@ -48,7 +48,7 @@ are three extra options you can add to your config file. `httpsProxy`, `proxyUse
 
 ### Syncing
 
-If you want to simply download all the data from Canva Data, the `sync` command can be used to keep an up-to-date copy locally.
+If you want to simply download all the data from Canvas Data, the `sync` command can be used to keep an up-to-date copy locally.
 
 ```Shell
 canvasDataCli sync -c path/to/config.js
@@ -58,13 +58,13 @@ This will start the sync process. The sync process uses the `sync` api endpoint 
 
 On subsequent executions, it will only download the files it doesn't have.
 
-This process is also resumeable, if for whatever reason you have issues, it should restart and download only the files that previously failed. One of the ways to make this more safe is that it downloads the file to a temporary name and renames it once the process is finished. This may leave around `gz.tmp` files, but they should get deleted automatically once you have a successful run.
+This process is also resumable, if for whatever reason you have issues, it should restart and download only the files that previously failed. One of the ways to make this more safe is that it downloads the file to a temporary name and renames it once the process is finished. This may leave around `gz.tmp` files, but they should get deleted automatically once you have a successful run.
 
 If you run this daily, you should keep all of your data from Canvas Data up to date.
 
 ### Fetch
 
-Fetches most up to date data for a single table from the API. This ignores any previously downloaded files and will redownload all the files associated with that table.
+Fetches most up to date data for a single table from the API. This ignores any previously downloaded files and will re-download all the files associated with that table.
 
 ```Shell
 canvasDataCli fetch -c path/to/config.js -t user_dim
@@ -72,19 +72,19 @@ canvasDataCli fetch -c path/to/config.js -t user_dim
 
 This will start the fetch process and download what is needed to get the most recent data for that table (in this case, the `user_dim`).
 
-On subsequent executions, this will redownload all the data for that table, ignoring any previous days data.
+On subsequent executions, this will re-download all the data for that table, ignoring any previous days data.
 
 ### Unpack
 
 _NOTE_: This only works after properly running a `sync` command
 
-This command will unpack the gzipped files, concat any partitioned files, and add a header to the output file
+This command will unpack the compressed (`gz`) files, concat any partitioned files, and add a header to the output file
 
 ```Shell
 canvasDataCli unpack -c path/to/config.js -f user_dim,account_dim
 ```
 
-This command will unpack the user_dim and account_dim tables to a directory. Currently, you explictly have to give the files you want to unpack as this has the potential for creating very large files.
+This command will unpack the user_dim and account_dim tables to a directory. Currently, you explicitly have to give the files you want to unpack as this has the potential for creating very large files.
 
 ## Developing
 

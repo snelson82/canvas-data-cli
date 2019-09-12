@@ -1,4 +1,4 @@
-var fs = require('fs');
+var fs = require("fs");
 var sampleConfig = `
 module.exports = {
   saveLocation: './dataFiles',
@@ -15,21 +15,16 @@ class ConfigTask {
   }
   run(cb) {
     this.logger.info(sampleConfig);
-    this.logger.info('was written to config.js');
-    fs.writeFile('config.js.sample', sampleConfig, cb);
+    this.logger.info("was written to config.js");
+    fs.writeFile("config.js.sample", sampleConfig, cb);
   }
   static validate(config) {
-    var fields = [
-      'saveLocation',
-      'apiUrl',
-      'key',
-      'secret'
-    ];
+    var fields = ["saveLocation", "apiUrl", "key", "secret"];
     var missing = [];
     for (var field of fields) {
       if (!config[field]) missing.push(field);
     }
-    if (missing.length) return `missing ${missing.join(', ')} fields in config`;
+    if (missing.length) return `missing ${missing.join(", ")} fields in config`;
     return null;
   }
 }

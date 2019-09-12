@@ -1,94 +1,102 @@
-var path = require('path');
-var fs = require('fs');
-var yargs = require('yargs');
-var logger = require('./logger');
-var Sync = require('./Sync');
-var Config = require('./ConfigTask');
-var Unpack = require('./Unpack');
-var Fetch = require('./Fetch');
-var Grab = require('./Grab');
-var List = require('./List');
+var path = require("path");
+var fs = require("fs");
+var yargs = require("yargs");
+var logger = require("./logger");
+var Sync = require("./Sync");
+var Config = require("./ConfigTask");
+var Unpack = require("./Unpack");
+var Fetch = require("./Fetch");
+var Grab = require("./Grab");
+var List = require("./List");
 
 var cli = yargs
-  .usage('canvasDataCli <command>')
-  .demand(1, 'must provide a valid command')
-  .option('level', {
-    alias: 'l',
-    default: 'info',
-    describe: `logging level to use, valid levels are ${logger.levels.join(', ')}`,
-    type: 'string'
+  .usage("canvasDataCli <command>")
+  .demand(1, "must provide a valid command")
+  .option("level", {
+    alias: "l",
+    default: "info",
+    describe: `logging level to use, valid levels are ${logger.levels.join(
+      ", "
+    )}`,
+    type: "string"
   })
-  .command('sync', 'download the latest files from the API', (yargs) => {
-    yargs.option('config', {
-        alias: 'c',
+  .command("sync", "download the latest files from the API", yargs => {
+    yargs
+      .option("config", {
+        alias: "c",
         demand: true,
-        describe: 'the configuration file to use',
-        type: 'string'
+        describe: "the configuration file to use",
+        type: "string"
       })
-      .help('help');
+      .help("help");
   })
-  .command('sampleConfig', 'write a sample config file to config.js.sample')
-  .command('unpack', 'decompress and merge files into a single file', (yargs) => {
-    yargs.option('config', {
-        alias: 'c',
+  .command("sampleConfig", "write a sample config file to config.js.sample")
+  .command("unpack", "decompress and merge files into a single file", yargs => {
+    yargs
+      .option("config", {
+        alias: "c",
         demand: true,
-        describe: 'the configuration file to use',
-        type: 'string'
+        describe: "the configuration file to use",
+        type: "string"
       })
-      .option('filter', {
-        alias: 'f',
-        describe: 'list of tables to unpack, ex: -f user_dim account_dim',
+      .option("filter", {
+        alias: "f",
+        describe: "list of tables to unpack, ex: -f user_dim account_dim",
         demand: true,
         array: true,
-        type: 'string'
+        type: "string"
       })
-      .help('help');
+      .help("help");
   })
-  .command('fetch', 'fetch a single table', (yargs) => {
-    yargs.options('config', {
-        alias: 'c',
+  .command("fetch", "fetch a single table", yargs => {
+    yargs
+      .options("config", {
+        alias: "c",
         demand: true,
-        describe: 'the configuration file to use',
-        type: 'string'
+        describe: "the configuration file to use",
+        type: "string"
       })
-      .option('table', {
-        alias: 't',
-        describe: 'the table to fetch',
+      .option("table", {
+        alias: "t",
+        describe: "the table to fetch",
         demand: true,
-        type: 'string'
+        type: "string"
       });
   })
-  .command('grab', 'grab one specific dump', (yargs) => {
-    yargs.options('config', {
-        alias: 'c',
+  .command("grab", "grab one specific dump", yargs => {
+    yargs
+      .options("config", {
+        alias: "c",
         demand: true,
-        describe: 'the configuration file to use',
-        type: 'string'
+        describe: "the configuration file to use",
+        type: "string"
       })
-      .option('dump', {
-        alias: 'd',
-        describe: 'the dump to fetch',
+      .option("dump", {
+        alias: "d",
+        describe: "the dump to fetch",
         demand: true,
-        type: 'string'
+        type: "string"
       });
   })
-  .command('list', 'list all dumps', (yargs) => {
-    yargs.options('config', {
-      alias: 'c',
-      demand: true,
-      describe: 'the configuration file to use.',
-      type: 'string'
-    }).option('json', {
-      alias: 'j',
-      describe: 'output in json format',
-      demand: false,
-      type: 'boolean'
-    });
+  .command("list", "list all dumps", yargs => {
+    yargs
+      .options("config", {
+        alias: "c",
+        demand: true,
+        describe: "the configuration file to use.",
+        type: "string"
+      })
+      .option("json", {
+        alias: "j",
+        describe: "output in json format",
+        demand: false,
+        type: "boolean"
+      });
   })
-  .help('help')
-  .alias('v', 'version')
-  .version(() => require('../package').version)
-  .describe('v', 'show version information');
+  .help("help")
+  .alias("v", "version")
+  .version(() => require("../package").version)
+  .describe("v", "show version information");
 
 var runnerMap = {
   sync: {
@@ -125,7 +133,7 @@ module.exports = {
       logger.setLevel(logLevel);
     }
     if (!runner) {
-      logger.error('invalid command');
+      logger.error("invalid command");
       cli.showHelp();
       process.exit(1);
     }
@@ -153,7 +161,7 @@ module.exports = {
     var runner = new RunnerClass(argv, config, logger);
     runner.run((err, showComplete = true) => {
       if (err) {
-        logger.error('an error occured');
+        logger.error("an error occured");
         logger.error(err);
         if (err.stack && !err.silence) logger.error(err.stack);
         process.exit(1);

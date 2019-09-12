@@ -1,10 +1,10 @@
-var Api = require('./Api');
-var path = require('path');
-var FileDownloader = require('./FileDownloader');
-var async = require('async');
-var fs = require('fs');
-var _ = require('lodash');
-var mkdirp = require('mkdirp');
+var Api = require("./Api");
+var path = require("path");
+var FileDownloader = require("./FileDownloader");
+var async = require("async");
+var fs = require("fs");
+var _ = require("lodash");
+var mkdirp = require("mkdirp");
 class Fetch {
   constructor(opts, config, logger) {
     this.opts = opts;
@@ -18,7 +18,7 @@ class Fetch {
     let toDownload = [];
     for (let element of files.history) {
       let seq = element.sequence;
-      let files = element.files.map((file) => {
+      let files = element.files.map(file => {
         file.sequence = seq;
         return file;
       });
@@ -33,22 +33,30 @@ class Fetch {
   }
   run(cb) {
     let saveFolder = path.join(this.saveLocation, this.table);
-    mkdirp(saveFolder, (err) => {
+    mkdirp(saveFolder, err => {
       this.api.getFilesForTable(this.table, (err, files) => {
         if (err) return cb(err);
 
         let toDownload = this.getNewest(files);
 
-        async.map(toDownload, (file, innerCb) => {
-          this.fileDownloader.downloadToFile(
-            file, {
-              tableName: this.table,
-              sequence: file.sequence
-            },
-            path.join(saveFolder, `${file.sequence.toString()}-${file.filename}`),
-            innerCb
-          );
-        }, cb);
+        async.map(
+          toDownload,
+          (file, innerCb) => {
+            this.fileDownloader.downloadToFile(
+              file,
+              {
+                tableName: this.table,
+                sequence: file.sequence
+              },
+              path.join(
+                saveFolder,
+                `${file.sequence.toString()}-${file.filename}`
+              ),
+              innerCb
+            );
+          },
+          cb
+        );
       });
     });
   }

@@ -1,3 +1,3 @@
-var logger = require('../../src/logger');
-logger.logIt = function () {};
+var logger = require("../../src/logger");
+logger.logIt = function() {};
 module.exports = logger;

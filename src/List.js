@@ -1,5 +1,5 @@
-var Api = require('./Api');
-var async = require('async');
+var Api = require("./Api");
+var async = require("async");
 
 class List {
   constructor(opts, config, logger) {
@@ -16,7 +16,7 @@ class List {
       if (err) return cb(err);
       let shouldShowCompletedMesssage = true;
       if (!this.jsonOut) {
-        dumps.map((dump) => {
+        dumps.map(dump => {
           this.logger.info(`- Dump ID: [ ${dump.dumpId} ]
                               Sequence: [ ${dump.sequence} ]
                               Account ID: [ ${dump.accountId} ]
