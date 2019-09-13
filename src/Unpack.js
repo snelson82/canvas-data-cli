@@ -60,7 +60,7 @@ class Unpack {
       toUnpack,
       (table, cb) => {
         const inputDir = path.join(sourceDir, table.tableName);
-        const outputTableName = path.join(outputDir, table.tableName + ".txt");
+        const outputTableName = path.join(outputDir, table.tableName + ".tsv");
         const outputStream = fs.createWriteStream(outputTableName);
         this.logger.info(`outputting ${table.tableName} to ${outputTableName}`);
         this.processTable(table, inputDir, outputStream, err => {
