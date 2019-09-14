@@ -6,17 +6,17 @@ Please read these instructions carefully:
 - [ ] Match the **code formatting** of the rest of the codebase.
 - [ ] Make sure to **add tests** to help keep code coverage up.
 
-## Motivation (required) ##
+## Motivation (**required**)
 
 What existing problem does the pull request solve?
 
-## Test Plan (required) ##
+## Test Plan (**required**)
 
 A good test plan has the exact commands you ran and their output.
 
 If you have added code that should be tested, add tests.
 
-## Next Steps ##
+## Next Steps
 
 - Small pull requests are much easier to review and more likely to get merged. Make sure the PR does only one thing, otherwise please split it.
-- Make sure all **tests pass**, we will run this on jenkins but you can run it yourself with the `build.sh` script.
+- Make sure **all tests pass**, we will run this on jenkins but you can run it yourself with the `build.sh` script.
