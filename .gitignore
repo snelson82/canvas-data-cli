@@ -6,6 +6,11 @@ state.json
 report/
 .nyc_output/
 **/my_scripts
-**/*_dataFiles
+parsed_requests/
+# **/*_dataFiles
+snelson_dataFiles/
 **/*_unpackedFiles
 .DS_Store
+
+canvas_data_importer/
+**/schema.json

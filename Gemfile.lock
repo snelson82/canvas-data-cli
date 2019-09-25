@@ -1,0 +1,41 @@
+GIT
+  remote: https://github.com/alexa-y/canvas_data_client.git
+  revision: 7cc21f9a69b0c021fb41e6ede0649985669c9d17
+  specs:
+    canvas_data_client (0.0.3)
+      open_uri_redirections (~> 0.2.1)
+      rest-client (~> 1.8.0)
+
+GIT
+  remote: https://github.com/snelson82/canvas_data_importer.git
+  revision: 09ced3fb05ffa88481c2de2e9731c6c682328039
+  specs:
+    canvas_data_importer (0.2.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    mime-types (2.99.3)
+    netrc (0.11.0)
+    open_uri_redirections (0.2.1)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  canvas_data_client!
+  canvas_data_importer!
+
+BUNDLED WITH
+   2.0.2
