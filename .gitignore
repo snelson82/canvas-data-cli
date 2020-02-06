@@ -14,5 +14,5 @@ snelson_dataFiles/
 
 canvas_data_importer/
 **/schema.json
-**/*.gz.tmp
+# **/*.gz.tmp
 **/*.gz

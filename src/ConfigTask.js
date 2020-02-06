@@ -2,7 +2,7 @@ var fs = require("fs");
 var sampleConfig = `
 module.exports = {
   saveLocation: './dataFiles',
-  unpackLocation: './unpackedFiles', // if not defined, defaults to 'unpackedFiles'
+  unpackLocation: './unpackedFiles',
   apiUrl: 'https://api.inshosteddata.com/api',
   key: process.env.CD_API_KEY, // don't hardcode creds, keep them in environment variables ideally!
   secret: process.env.CD_API_SECRET,
